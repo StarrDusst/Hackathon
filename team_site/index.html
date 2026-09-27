@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09111f">
+  <meta name="description" content="Qwen 3.8 — the WIUT computer-vision team building a local-first traffic-event review demo.">
+  <title>Qwen 3.8 — Traffic Vision Team</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08101d;--surface:#101b2b;--surface-2:#142238;--ink:#edf3fc;--muted:#9babc0;--line:rgba(196,216,239,.12);--mint:#69edc0;--cyan:#72cafa;--amber:#ffca75;--red:#ff6c78;--radius:24px;--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 82% 8%,rgba(55,137,166,.17),transparent 32rem),radial-gradient(ellipse at 12% 42%,rgba(80,141,125,.10),transparent 34rem),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid var(--mint);outline-offset:4px;border-radius:6px}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}.brand-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,var(--mint),#38bda7);color:#07151a;font-size:13px;font-weight:950;box-shadow:0 8px 30px #69edc02b}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}.nav-links{display:flex;gap:28px;align-items:center;color:#bdc9d9;font-size:14px}.nav-links a:hover{color:var(--mint)}.nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(105,237,192,.38);background:rgba(105,237,192,.10);color:var(--mint);padding:11px 17px;border-radius:999px;font-size:13px;font-weight:750;transition:.2s}.nav-cta:hover,.button:hover{background:rgba(105,237,192,.18);transform:translateY(-1px)}
+    .hero{padding:78px 0 70px;display:grid;grid-template-columns:1.03fr .97fr;gap:42px;align-items:center}.eyebrow{display:inline-flex;gap:9px;align-items:center;color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 16px var(--mint)}h1{font-size:clamp(44px,6.3vw,78px);line-height:.99;letter-spacing:-.065em;margin:20px 0 22px;max-width:650px}.gradient{background:linear-gradient(100deg,#f3f6fb 8%,#a9eddb 56%,#76cafa 100%);background-clip:text;color:transparent}.hero-copy{font-size:17px;color:#afbdd0;max-width:590px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.button.primary{background:var(--mint);color:#07151a;border-color:var(--mint)}.button.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.hero-note{margin-top:18px;font-size:12px;color:#8294aa}
+    .visual{position:relative;background:linear-gradient(145deg,#15253a,#0d1726 75%);border:1px solid var(--line);border-radius:30px;padding:15px;box-shadow:0 28px 90px #0006;overflow:hidden}.visual-top{height:35px;display:flex;align-items:center;justify-content:space-between;padding:0 7px 10px;color:#a8b6c9;font-size:11px}.dots{display:flex;gap:5px}.dots i{width:6px;height:6px;border-radius:50%;background:#496078}.live{display:flex;align-items:center;gap:7px;color:var(--mint);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.live:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint)}.road{display:block;width:100%;height:auto;border-radius:18px;background:#0b1421}.visual-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 8px 1px;color:#94a5ba;font-size:11px}.key{display:flex;gap:14px;flex-wrap:wrap}.key span{display:inline-flex;align-items:center;gap:6px}.swatch{width:9px;height:9px;border-radius:2px;background:var(--red)}.swatch.amber{background:var(--amber)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:2px 0 82px}.stat{padding:20px 22px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(130deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}.stat strong{font-size:22px;letter-spacing:-.04em}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+    section{scroll-margin-top:28px}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:25px}.kicker{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.section-head h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;line-height:1.05;margin:9px 0 0}.section-head p{max-width:440px;color:var(--muted);font-size:14px;margin:0}.team{padding-bottom:84px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{position:relative;padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(150deg,rgba(20,34,56,.93),rgba(13,23,38,.93));overflow:hidden;min-height:265px}.card:after{content:"";position:absolute;width:120px;height:120px;right:-50px;top:-55px;border:1px solid rgba(105,237,192,.12);border-radius:50%;box-shadow:0 0 0 18px rgba(105,237,192,.025),0 0 0 38px rgba(105,237,192,.018)}.avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:rgba(105,237,192,.11);color:var(--mint);font-weight:900;font-size:14px;letter-spacing:.02em;margin-bottom:25px}.card:nth-child(2) .avatar{background:rgba(114,202,250,.12);color:var(--cyan)}.card:nth-child(3) .avatar{background:rgba(255,202,117,.12);color:var(--amber)}.role{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.card:nth-child(2) .role{color:var(--cyan)}.card:nth-child(3) .role{color:var(--amber)}.card h3{font-size:21px;letter-spacing:-.035em;margin:9px 0 10px}.card p{color:#a6b5c9;font-size:13px;margin:0;max-width:320px}.number{position:absolute;right:22px;bottom:17px;color:#56677d;font-size:11px;font-weight:800;letter-spacing:.14em}
+    .project{padding:30px 0 85px}.project-panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:38px;padding:36px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(120deg,rgba(105,237,192,.075),rgba(20,34,56,.72) 48%,rgba(20,34,56,.45))}.project-panel h2{font-size:34px;line-height:1.08;letter-spacing:-.05em;margin:9px 0 15px}.project-panel p{color:#afbdd0;font-size:14px}.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.chip{border:1px solid var(--line);background:#101d2d;color:#c3d2e3;padding:7px 11px;border-radius:999px;font-size:11px;font-weight:650}.principles{display:grid;grid-template-columns:1fr 1fr;gap:13px}.principle{padding:19px;border:1px solid var(--line);border-radius:18px;background:rgba(7,16,29,.36)}.principle b{display:block;margin-bottom:6px;font-size:13px}.principle span{color:var(--muted);font-size:12px}.caveat{margin-top:18px;padding:13px 15px;border-left:2px solid var(--amber);background:rgba(255,202,117,.055);color:#d2c5a9;font-size:12px}
+    footer{border-top:1px solid var(--line);padding:23px 0 30px;color:#7e90a7;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footer-brand{color:#d1dbea;font-weight:800}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:52px}.visual{max-width:680px}.cards{grid-template-columns:1fr 1fr}.project-panel{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.section-head p{max-width:650px}}
+    @media(max-width:580px){.wrap{width:min(var(--max),calc(100% - 28px))}.nav{height:70px}.nav-links{gap:12px;font-size:12px}.nav-links .nav-cta{display:none}.hero{padding:42px 0 48px;gap:30px}.hero-copy{font-size:15px}.stats{gap:8px;margin-bottom:62px}.stat{padding:14px 12px}.stat strong{font-size:18px}.stat span{font-size:10px}.cards{grid-template-columns:1fr}.card{min-height:225px}.project-panel{padding:24px 19px}.principles{grid-template-columns:1fr}.visual-foot{flex-direction:column}.brand{font-size:13px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Qwen 3.8 home"><span class="brand-mark">Q3.8</span><span>Qwen 3.8<small>WIUT · COMPUTER VISION</small></span></a>
+      <nav class="nav-links"><a href="#project">Project</a><a href="#team">Team</a><a class="nav-cta" href="#team">Meet the team <span aria-hidden="true">↗</span></a></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <span class="eyebrow">WIUT CV Hackathon</span>
+          <h1 id="hero-title"><span class="gradient">Seeing the road.</span><br>Understanding the moment.</h1>
+          <p class="hero-copy">We are <strong>Qwen 3.8</strong> — a three-person computer-vision team exploring local-first traffic-event detection and visual review.</p>
+          <div class="hero-actions"><a class="button primary" href="#team">Meet Qwen 3.8 <span aria-hidden="true">↓</span></a><a class="button secondary" href="#project">Explore the project</a></div>
+          <p class="hero-note">Built for the WIUT computer-vision track · Runs locally · GPU-accelerated YOLO</p>
+        </div>
+        <div class="visual" aria-label="Illustration of road users with candidate event boxes">
+          <div class="visual-top"><span class="dots"><i></i><i></i><i></i></span><span>TRAFFIC REVIEW / FRAME 08:14</span><span class="live">LOCAL</span></div>
+          <svg class="road" viewBox="0 0 560 360" role="img" aria-labelledby="road-title road-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="road-title">Traffic vision review illustration</title><desc id="road-desc">Stylized road with detected vehicles. Red and amber rectangles are unverified event-review cues.</desc>
+            <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#142840"/><stop offset="1" stop-color="#0a1422"/></linearGradient><linearGradient id="asphalt" x2="0" y2="1"><stop stop-color="#253449"/><stop offset="1" stop-color="#192638"/></linearGradient></defs>
+            <rect width="560" height="360" fill="url(#sky)"/><circle cx="445" cy="61" r="29" fill="#8bd6c3" opacity=".12"/><path d="M0 210L205 167 365 170 560 213V360H0Z" fill="url(#asphalt)"/><path d="M278 181L264 360" stroke="#d6e3ef" stroke-opacity=".42" stroke-width="4" stroke-dasharray="18 16"/><path d="M70 198L40 360M490 198L532 360" stroke="#d6e3ef" stroke-opacity=".19" stroke-width="3"/>
+            <g transform="translate(165 224)"><path d="M4 25l9-19q3-6 10-6h39q8 0 12 7l9 18v30H2V31z" fill="#71a8bd"/><path d="M21 5h39l8 18H13z" fill="#18364b"/><circle cx="18" cy="53" r="8" fill="#09111c"/><circle cx="69" cy="53" r="8" fill="#09111c"/><rect x="-4" y="-7" width="93" height="70" rx="5" fill="none" stroke="#ff6c78" stroke-width="2.5"/><rect x="-4" y="-24" width="119" height="17" rx="4" fill="#ff6c78"/><text x="3" y="-12" fill="#111723" font-family="system-ui" font-size="9" font-weight="800">EVENT CANDIDATE?</text></g>
+            <g transform="translate(355 205) scale(.76)"><path d="M4 25l9-19q3-6 10-6h39q8 0 12 7l9 18v30H2V31z" fill="#d7ab63"/><path d="M21 5h39l8 18H13z" fill="#324052"/><circle cx="18" cy="53" r="8" fill="#09111c"/><circle cx="69" cy="53" r="8" fill="#09111c"/><rect x="-5" y="-8" width="95" height="71" rx="5" fill="none" stroke="#ffca75" stroke-width="3"/><rect x="-5" y="-25" width="111" height="18" rx="4" fill="#ffca75"/><text x="2" y="-12" fill="#111723" font-family="system-ui" font-size="10" font-weight="800">STOP CANDIDATE</text></g>
+            <g fill="#69edc0" opacity=".75"><circle cx="79" cy="69" r="2"/><circle cx="101" cy="89" r="1.5"/><circle cx="515" cy="105" r="2"/><circle cx="487" cy="82" r="1.5"/></g>
+            <rect x="20" y="20" width="160" height="25" rx="7" fill="#07111fcc" stroke="#ffffff" stroke-opacity=".1"/><text x="31" y="37" fill="#c5d4e6" font-family="system-ui" font-size="10" letter-spacing="1.1">YOLO · CUDA · 2 FPS REVIEW</text>
+          </svg>
+          <div class="visual-foot"><span class="key"><span><i class="swatch"></i>Event candidate</span><span><i class="swatch amber"></i>Stop candidate</span></span><span>Illustrative UI concept</span></div>
+        </div>
+      </section>
+
+      <div class="stats" aria-label="Team and project facts">
+        <div class="stat"><strong>03</strong><span>team contributors</span></div>
+        <div class="stat"><strong>CUDA</strong><span>local GPU inference</span></div>
+        <div class="stat"><strong>2 FPS</strong><span>annotated review output</span></div>
+      </div>
+
+      <section class="team" id="team" aria-labelledby="team-title">
+        <div class="section-head"><div><span class="kicker">The people behind the frames</span><h2 id="team-title">Small team. Clear roles.</h2></div><p>Different parts of the same pipeline: from object detection and scene geometry to a demo that makes review practical.</p></div>
+        <div class="cards">
+          <article class="card"><div class="avatar" aria-hidden="true">IS</div><span class="role">01 · Team lead &amp; integration</span><h3>Inomov Saidkamol</h3><p>Coordinates the project, connects the event pipeline, and brings the system components together.</p><span class="number">QWEN / 01</span></article>
+          <article class="card"><div class="avatar" aria-hidden="true">KA</div><span class="role">02 · Computer vision &amp; GPU</span><h3>Karimov Alisher</h3><p>Works on YOLO inference, CUDA acceleration, and fixed-camera scene calibration.</p><span class="number">QWEN / 02</span></article>
+          <article class="card"><div class="avatar" aria-hidden="true">BO</div><span class="role">03 · Demo, EDA &amp; validation</span><h3>Bekasil Ongarbaev</h3><p>Builds the review experience, explores sample outputs, and checks the demo and results.</p><span class="number">QWEN / 03</span></article>
+        </div>
+      </section>
+
+      <section class="project" id="project" aria-labelledby="project-title">
+        <div class="project-panel">
+          <div><span class="kicker">The project</span><h2 id="project-title">A review layer for road-camera video.</h2><p>Our prototype samples fixed-camera footage, detects road users, applies temporal rules, estimates risk cues, and creates an annotated video for human review.</p><div class="stack"><span class="chip">YOLOv8n</span><span class="chip">CUDA</span><span class="chip">OpenCV</span><span class="chip">Streamlit</span><span class="chip">Local-first</span></div></div>
+          <div><div class="principles"><div class="principle"><b>Detect</b><span>Locate road users with a compact COCO-pretrained detector.</span></div><div class="principle"><b>Review</b><span>Show candidate intervals and visual pointers in an annotated clip.</span></div><div class="principle"><b>Run locally</b><span>Keep processing on the machine; no hosted inference API is required.</span></div><div class="principle"><b>Stay cautious</b><span>Use event windows as prompts for review, not final incident decisions.</span></div></div><div class="caveat">Important: event labels are heuristic candidates. The sample footage has no ground-truth labels, so this site makes no accuracy or incident-confirmation claims.</div></div>
+        </div>
+      </section>
+    </main>
+    <footer><span class="footer-brand">Qwen 3.8 · WIUT CV Hackathon</span><span>Computer vision for safer-road review · <span id="year"></span></span></footer>
+  </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

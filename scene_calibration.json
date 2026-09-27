@@ -1,0 +1,721 @@
+{
+  "version": 1,
+  "status": "auto-draft-needs-visual-review",
+  "reference_video": "C3896.MP4",
+  "reference_size": [
+    1920,
+    1080
+  ],
+  "reference_fps": 29.97002997002997,
+  "reference_duration_sec": 340.34,
+  "calibration_sample_hz": 0.5,
+  "road_polygon_norm": [
+    [
+      0.98542,
+      0.99907
+    ],
+    [
+      0.02969,
+      1.0
+    ],
+    [
+      0.0151,
+      0.3713
+    ],
+    [
+      0.08594,
+      0.07593
+    ],
+    [
+      0.60625,
+      0.20648
+    ],
+    [
+      0.96875,
+      0.43796
+    ],
+    [
+      0.99167,
+      0.61667
+    ]
+  ],
+  "lanes": [
+    {
+      "id": "horizontal_negative_1",
+      "axis": "horizontal",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.42129
+        ],
+        [
+          1.0,
+          0.42129
+        ],
+        [
+          1.0,
+          0.51143
+        ],
+        [
+          0.0,
+          0.51143
+        ]
+      ],
+      "direction": [
+        -1.0,
+        0.0
+      ],
+      "track_count": 12,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "horizontal_negative_2",
+      "axis": "horizontal",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.08359
+        ],
+        [
+          1.0,
+          0.08359
+        ],
+        [
+          1.0,
+          0.18907
+        ],
+        [
+          0.0,
+          0.18907
+        ]
+      ],
+      "direction": [
+        -1.0,
+        0.0
+      ],
+      "track_count": 9,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "horizontal_negative_3",
+      "axis": "horizontal",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.27789
+        ],
+        [
+          1.0,
+          0.27789
+        ],
+        [
+          1.0,
+          0.36639
+        ],
+        [
+          0.0,
+          0.36639
+        ]
+      ],
+      "direction": [
+        -1.0,
+        0.0
+      ],
+      "track_count": 9,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "horizontal_positive_4",
+      "axis": "horizontal",
+      "sign": 1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.50307
+        ],
+        [
+          1.0,
+          0.50307
+        ],
+        [
+          1.0,
+          0.57807
+        ],
+        [
+          0.0,
+          0.57807
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "track_count": 13,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "horizontal_positive_5",
+      "axis": "horizontal",
+      "sign": 1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.69421
+        ],
+        [
+          1.0,
+          0.69421
+        ],
+        [
+          1.0,
+          0.78148
+        ],
+        [
+          0.0,
+          0.78148
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "track_count": 12,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "horizontal_positive_6",
+      "axis": "horizontal",
+      "sign": 1,
+      "polygon_norm": [
+        [
+          0.0,
+          0.33771
+        ],
+        [
+          1.0,
+          0.33771
+        ],
+        [
+          1.0,
+          0.44271
+        ],
+        [
+          0.0,
+          0.44271
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0
+      ],
+      "track_count": 9,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "vertical_negative_7",
+      "axis": "vertical",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.91068,
+          0.0
+        ],
+        [
+          0.98568,
+          0.0
+        ],
+        [
+          0.98568,
+          1.0
+        ],
+        [
+          0.91068,
+          1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "track_count": 4,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "vertical_negative_8",
+      "axis": "vertical",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.62122,
+          0.0
+        ],
+        [
+          0.70264,
+          0.0
+        ],
+        [
+          0.70264,
+          1.0
+        ],
+        [
+          0.62122,
+          1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "track_count": 4,
+      "confidence": "draft-auto"
+    },
+    {
+      "id": "vertical_negative_9",
+      "axis": "vertical",
+      "sign": -1,
+      "polygon_norm": [
+        [
+          0.32775,
+          0.0
+        ],
+        [
+          0.40275,
+          0.0
+        ],
+        [
+          0.40275,
+          1.0
+        ],
+        [
+          0.32775,
+          1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        -1.0
+      ],
+      "track_count": 3,
+      "confidence": "draft-auto"
+    }
+  ],
+  "crosswalk_polygons_norm": [],
+  "intersection_polygon_norm": [],
+  "stop_lines": [],
+  "solid_boundaries": [],
+  "hazard_rois": [],
+  "traffic_lights": [
+    {
+      "bbox_norm": [
+        0.58578,
+        0.32373,
+        0.6099,
+        0.39276
+      ],
+      "detections": 3,
+      "confidence": "draft-auto",
+      "state": "unknown"
+    },
+    {
+      "bbox_norm": [
+        0.09493,
+        0.22348,
+        0.12518,
+        0.27739
+      ],
+      "detections": 2,
+      "confidence": "draft-auto",
+      "state": "unknown"
+    }
+  ],
+  "stop_signs": [],
+  "stopped_vehicle_zone_candidates": [
+    {
+      "point_norm": [
+        0.9825,
+        0.96417
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.2336,
+        0.33424
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.01642,
+        0.35427
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.94603,
+        0.8917
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.32013,
+        0.15378
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.43061,
+        0.14595
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.39728,
+        0.34922
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.3293,
+        0.36584
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.33243,
+        0.30701
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.95572,
+        0.40123
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.98017,
+        0.74915
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.98047,
+        0.91384
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.63301,
+        0.59112
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.80696,
+        0.52439
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.57215,
+        0.52057
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.66641,
+        0.47248
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.92811,
+        0.92998
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.40212,
+        0.41946
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.46576,
+        0.47229
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.31883,
+        0.22102
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.46331,
+        0.17261
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.38359,
+        0.18792
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.4499,
+        0.22019
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.19708,
+        0.31882
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.31462,
+        0.15788
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.97367,
+        0.87258
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.28712,
+        0.33113
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.3679,
+        0.47533
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.41251,
+        0.23643
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.95426,
+        0.85247
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.94209,
+        0.69809
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.24334,
+        0.20906
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.33794,
+        0.43297
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.15437,
+        0.32575
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.29337,
+        0.17166
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.92055,
+        0.39822
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.81832,
+        0.53745
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.28366,
+        0.38126
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.26774,
+        0.26521
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.4668,
+        0.22859
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.51784,
+        0.44982
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.65377,
+        0.61423
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.22866,
+        0.40835
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.58161,
+        0.65117
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.51618,
+        0.67521
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    },
+    {
+      "point_norm": [
+        0.04654,
+        0.43879
+      ],
+      "confidence": "review",
+      "note": "recurrent/slow-vehicle sample; not a stop line"
+    }
+  ],
+  "prohibited_turns": [],
+  "u_turn_allowed": null,
+  "manual_review_required": true,
+  "notes": [
+    "All geometry uses normalized [0,1] image coordinates.",
+    "Road polygon and direction corridors are inferred from YOLO vehicle detections and require visual correction.",
+    "Add crosswalk_polygons_norm, stop_lines and solid_boundaries manually before enabling those event rules.",
+    "Traffic-light objects are not signal-state labels; red/green ROI colors also require review."
+  ],
+  "track_counts": {
+    "vehicles": 893,
+    "traffic_lights": 3,
+    "stop_signs": 0,
+    "animals": 0
+  },
+  "overlay_image": "calibration_overlay.jpg"
+}

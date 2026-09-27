@@ -1,0 +1,99 @@
+{
+  "method": "YOLOv8n COCO inference at 2 Hz; gray-frame difference motion; no sample ground truth",
+  "videos": {
+    "C3896.MP4": {
+      "duration_sec": 340.34,
+      "fps": 29.97002997002997,
+      "resolution": "1920\u00d71080",
+      "n_frames": 10200,
+      "sample_rate_hz": 1.998,
+      "summary": {
+        "detections_per_class_total": {
+          "person": 3910,
+          "bicycle": 0,
+          "car": 12835,
+          "motorcycle": 23,
+          "bus": 820,
+          "truck": 320,
+          "traffic_light": 20,
+          "fire_hydrant": 11,
+          "stop_sign": 0,
+          "bird": 0,
+          "cat": 0,
+          "dog": 0,
+          "horse": 0,
+          "sheep": 0,
+          "cow": 0
+        },
+        "mean_count_per_sample": {
+          "person": 5.75,
+          "bicycle": 0.0,
+          "car": 18.875,
+          "motorcycle": 0.033823529411764704,
+          "bus": 1.2058823529411764,
+          "truck": 0.47058823529411764,
+          "traffic_light": 0.029411764705882353,
+          "fire_hydrant": 0.016176470588235296,
+          "stop_sign": 0.0,
+          "bird": 0.0,
+          "cat": 0.0,
+          "dog": 0.0,
+          "horse": 0.0,
+          "sheep": 0.0,
+          "cow": 0.0
+        },
+        "mean_motion": 8.234587600125986,
+        "sampled_frames": 680
+      },
+      "chart": "C3896_eda.png",
+      "annotated_video": "C3896_event_review.mp4"
+    },
+    "C3902.MP4": {
+      "duration_sec": 317.817,
+      "fps": 29.97002997002997,
+      "resolution": "1920\u00d71080",
+      "n_frames": 9525,
+      "sample_rate_hz": 1.998,
+      "summary": {
+        "detections_per_class_total": {
+          "person": 7031,
+          "bicycle": 11,
+          "car": 11753,
+          "motorcycle": 89,
+          "bus": 898,
+          "truck": 245,
+          "traffic_light": 194,
+          "fire_hydrant": 0,
+          "stop_sign": 0,
+          "bird": 0,
+          "cat": 0,
+          "dog": 0,
+          "horse": 1,
+          "sheep": 0,
+          "cow": 0
+        },
+        "mean_count_per_sample": {
+          "person": 11.07244094488189,
+          "bicycle": 0.01732283464566929,
+          "car": 18.508661417322834,
+          "motorcycle": 0.14015748031496064,
+          "bus": 1.4141732283464568,
+          "truck": 0.3858267716535433,
+          "traffic_light": 0.30551181102362207,
+          "fire_hydrant": 0.0,
+          "stop_sign": 0.0,
+          "bird": 0.0,
+          "cat": 0.0,
+          "dog": 0.0,
+          "horse": 0.0015748031496062992,
+          "sheep": 0.0,
+          "cow": 0.0
+        },
+        "mean_motion": 8.15902398308431,
+        "sampled_frames": 635
+      },
+      "chart": "C3902_eda.png",
+      "annotated_video": "C3902_event_review.mp4"
+    }
+  }
+}
