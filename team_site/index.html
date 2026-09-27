@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09111f">
-  <meta name="description" content="Qwen 3.8 — the WIUT computer-vision team building a local-first traffic-event review demo.">
+  <meta name="description" content="Qwen 3.8 — local-first traffic-event review. Meet the team and learn how to run the Streamlit demo.">
   <title>Qwen 3.8 — Traffic Vision Team</title>
   <style>
     :root{color-scheme:dark;--bg:#08101d;--surface:#101b2b;--surface-2:#142238;--ink:#edf3fc;--muted:#9babc0;--line:rgba(196,216,239,.12);--mint:#69edc0;--cyan:#72cafa;--amber:#ffca75;--red:#ff6c78;--radius:24px;--max:1160px}
@@ -15,8 +15,9 @@
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:2px 0 82px}.stat{padding:20px 22px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(130deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}.stat strong{font-size:22px;letter-spacing:-.04em}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
     section{scroll-margin-top:28px}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:25px}.kicker{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.section-head h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;line-height:1.05;margin:9px 0 0}.section-head p{max-width:440px;color:var(--muted);font-size:14px;margin:0}.team{padding-bottom:84px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{position:relative;padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(150deg,rgba(20,34,56,.93),rgba(13,23,38,.93));overflow:hidden;min-height:265px}.card:after{content:"";position:absolute;width:120px;height:120px;right:-50px;top:-55px;border:1px solid rgba(105,237,192,.12);border-radius:50%;box-shadow:0 0 0 18px rgba(105,237,192,.025),0 0 0 38px rgba(105,237,192,.018)}.avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:rgba(105,237,192,.11);color:var(--mint);font-weight:900;font-size:14px;letter-spacing:.02em;margin-bottom:25px}.card:nth-child(2) .avatar{background:rgba(114,202,250,.12);color:var(--cyan)}.card:nth-child(3) .avatar{background:rgba(255,202,117,.12);color:var(--amber)}.role{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.card:nth-child(2) .role{color:var(--cyan)}.card:nth-child(3) .role{color:var(--amber)}.card h3{font-size:21px;letter-spacing:-.035em;margin:9px 0 10px}.card p{color:#a6b5c9;font-size:13px;margin:0;max-width:320px}.number{position:absolute;right:22px;bottom:17px;color:#56677d;font-size:11px;font-weight:800;letter-spacing:.14em}
     .project{padding:30px 0 85px}.project-panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:38px;padding:36px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(120deg,rgba(105,237,192,.075),rgba(20,34,56,.72) 48%,rgba(20,34,56,.45))}.project-panel h2{font-size:34px;line-height:1.08;letter-spacing:-.05em;margin:9px 0 15px}.project-panel p{color:#afbdd0;font-size:14px}.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.chip{border:1px solid var(--line);background:#101d2d;color:#c3d2e3;padding:7px 11px;border-radius:999px;font-size:11px;font-weight:650}.principles{display:grid;grid-template-columns:1fr 1fr;gap:13px}.principle{padding:19px;border:1px solid var(--line);border-radius:18px;background:rgba(7,16,29,.36)}.principle b{display:block;margin-bottom:6px;font-size:13px}.principle span{color:var(--muted);font-size:12px}.caveat{margin-top:18px;padding:13px 15px;border-left:2px solid var(--amber);background:rgba(255,202,117,.055);color:#d2c5a9;font-size:12px}
+    .run{padding:0 0 88px}.run-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.run-card{padding:23px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(20,34,56,.92),rgba(13,23,38,.92))}.run-card.evaluation{grid-column:1/-1}.run-card h3{font-size:18px;letter-spacing:-.025em;margin:9px 0}.run-card p{color:#a6b5c9;font-size:13px;margin:0}.run-card pre{margin:16px 0 12px;padding:15px;border:1px solid var(--line);border-radius:14px;background:#08101d;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.run-card code{color:#cdeee1;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.7}.run-meta{color:var(--muted)!important;font-size:12px!important;margin-top:11px!important}.run-callout{margin-top:16px;padding:16px 18px;border:1px solid rgba(105,237,192,.18);border-radius:16px;background:rgba(105,237,192,.045);color:#aebdd0;font-size:13px}.run-callout a{color:var(--mint);text-decoration:underline;text-underline-offset:3px}
     footer{border-top:1px solid var(--line);padding:23px 0 30px;color:#7e90a7;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footer-brand{color:#d1dbea;font-weight:800}
-    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:52px}.visual{max-width:680px}.cards{grid-template-columns:1fr 1fr}.project-panel{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.section-head p{max-width:650px}}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:52px}.visual{max-width:680px}.cards{grid-template-columns:1fr 1fr}.project-panel{grid-template-columns:1fr}.run-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.section-head p{max-width:650px}}
     @media(max-width:580px){.wrap{width:min(var(--max),calc(100% - 28px))}.nav{height:70px}.nav-links{gap:12px;font-size:12px}.nav-links .nav-cta{display:none}.hero{padding:42px 0 48px;gap:30px}.hero-copy{font-size:15px}.stats{gap:8px;margin-bottom:62px}.stat{padding:14px 12px}.stat strong{font-size:18px}.stat span{font-size:10px}.cards{grid-template-columns:1fr}.card{min-height:225px}.project-panel{padding:24px 19px}.principles{grid-template-columns:1fr}.visual-foot{flex-direction:column}.brand{font-size:13px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
@@ -25,7 +26,7 @@
   <div class="wrap">
     <header class="nav" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="Qwen 3.8 home"><span class="brand-mark">Q3.8</span><span>Qwen 3.8<small>WIUT · COMPUTER VISION</small></span></a>
-      <nav class="nav-links"><a href="#project">Project</a><a href="#team">Team</a><a class="nav-cta" href="#team">Meet the team <span aria-hidden="true">↗</span></a></nav>
+      <nav class="nav-links"><a href="#project">Project</a><a href="#run">Run locally</a><a href="#team">Team</a><a class="nav-cta" href="#team">Meet the team <span aria-hidden="true">↗</span></a></nav>
     </header>
 
     <main id="top">
@@ -34,7 +35,7 @@
           <span class="eyebrow">WIUT CV Hackathon</span>
           <h1 id="hero-title"><span class="gradient">Seeing the road.</span><br>Understanding the moment.</h1>
           <p class="hero-copy">We are <strong>Qwen 3.8</strong> — a three-person computer-vision team exploring local-first traffic-event detection and visual review.</p>
-          <div class="hero-actions"><a class="button primary" href="#team">Meet Qwen 3.8 <span aria-hidden="true">↓</span></a><a class="button secondary" href="#project">Explore the project</a></div>
+          <div class="hero-actions"><a class="button primary" href="#team">Meet Qwen 3.8 <span aria-hidden="true">↓</span></a><a class="button secondary" href="#run">Run the demo</a></div>
           <p class="hero-note">Built for the WIUT computer-vision track · Runs locally · GPU-accelerated YOLO</p>
         </div>
         <div class="visual" aria-label="Traffic review frame from the project sample video">
@@ -64,6 +65,28 @@
           <div><span class="kicker">The project</span><h2 id="project-title">A review layer for road-camera video.</h2><p>Our prototype samples fixed-camera footage, detects road users, applies temporal rules, estimates risk cues, and creates an annotated video for human review.</p><div class="stack"><span class="chip">YOLOv8n</span><span class="chip">CUDA</span><span class="chip">OpenCV</span><span class="chip">Streamlit</span><span class="chip">Local-first</span></div></div>
           <div><div class="principles"><div class="principle"><b>Detect</b><span>Locate road users with a compact COCO-pretrained detector.</span></div><div class="principle"><b>Review</b><span>Show candidate intervals and visual pointers in an annotated clip.</span></div><div class="principle"><b>Run locally</b><span>Keep processing on the machine; no hosted inference API is required.</span></div><div class="principle"><b>Stay cautious</b><span>Use event windows as prompts for review, not final incident decisions.</span></div></div><div class="caveat">Important: event labels are heuristic candidates. The sample footage has no ground-truth labels, so this site makes no accuracy or incident-confirmation claims.</div></div>
         </div>
+      </section>
+
+      <section class="run" id="run" aria-labelledby="run-title">
+        <div class="section-head"><div><span class="kicker">Start here</span><h2 id="run-title">Run the demo locally.</h2></div><p>This GitHub Pages site is a static project showcase. To analyse a video, launch Streamlit on your own computer; processing stays there and video is not uploaded to this website.</p></div>
+        <div class="run-grid">
+          <article class="run-card"><span class="kicker">Windows · recommended</span><h3>Set up and launch</h3><p>Clone the project, then run setup in PowerShell from the repository folder. It installs dependencies and downloads the detector weights.</p><pre><code>git clone https://github.com/StarrDusst/Hackathon.git
+cd Hackathon
+.\setup.ps1
+.\.venv\Scripts\Activate.ps1
+streamlit run app.py</code></pre><p class="run-meta">Then open <strong>http://localhost:8501</strong> and select an MP4. If PowerShell blocks setup, run <code>powershell -ExecutionPolicy Bypass -File .\setup.ps1</code>.</p></article>
+          <article class="run-card"><span class="kicker">Linux · macOS</span><h3>Set up and launch</h3><p>Run these commands in a terminal from the cloned repository folder.</p><pre><code>git clone https://github.com/StarrDusst/Hackathon.git
+cd Hackathon
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+sh weights/download.sh
+streamlit run app.py</code></pre><p class="run-meta">Then open <strong>http://localhost:8501</strong>. CUDA is optional; inference falls back to CPU when no compatible GPU is available.</p></article>
+          <article class="run-card evaluation"><span class="kicker">Organizer package · benchmark</span><h3>Run official evaluation</h3><p>Use the test-video and ground-truth paths supplied by the organizers.</p><pre><code>python run_submission.py --videos /path/to/test-videos --out predictions.json --team "Qwen 3.8"
+python evaluate.py --pred predictions.json --gt /path/to/ground_truth.json</code></pre><p class="run-meta">The sample clips have no ground-truth labels. Local <code>--validate-only</code> checks output format only; it does not measure model accuracy.</p></article>
+        </div>
+        <div class="run-callout"><strong>Large and 4K video:</strong> MP4 uploads are configured up to 10 GiB, but Streamlit buffers each complete upload in server RAM. YOLO inference resizes sampled frames to 640 px and the review output is downscaled; long clips can take hours. Read the <a href="https://github.com/StarrDusst/Hackathon#quick-start--windows">resource guidance</a> before using large files.</div>
       </section>
     </main>
     <footer><span class="footer-brand">Qwen 3.8 · WIUT CV Hackathon</span><span>Computer vision for safer-road review · <span id="year"></span></span></footer>

@@ -27,5 +27,5 @@ Remove-Item -LiteralPath $CudaWheelDir, $CudaTemp -Recurse -Force -ErrorAction S
 & $Python weights\download.py
 Write-Host ''
 Write-Host 'Setup complete. Activate with .\.venv\Scripts\Activate.ps1'
-Write-Host 'Run samples: python run_submission.py --videos ..\samples --out predictions_samples.json --team YOUR_TEAM'
+Write-Host 'Run samples: python run_submission.py --videos ..\samples --out predictions_samples.json --team "Qwen 3.8"'
 Write-Host 'Run demo:    streamlit run app.py'

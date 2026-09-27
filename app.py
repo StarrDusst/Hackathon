@@ -319,7 +319,7 @@ with overview:
     """)
     st.code("MP4 → YOLOv8n (road users + signal/sign proposals) → tracks + auto camera draft → calibrated event rules → events + causal risk", language="text")
     st.info("Auto road/lane geometry is generated from the reference clip and requires visual review. Red-light/stop-line, crosswalk, solid-line and prohibited-turn rules need verified ROIs/polygons; an object box alone does not establish a violation.")
-    st.markdown("**Reproduce:** `python calibrate_scene.py` · review `reports/calibration_overlay.jpg` and `scene_calibration.json` · `python run_submission.py --videos ../samples --out predictions_samples.json --team YOUR_TEAM` · `streamlit run app.py`.")
+    st.markdown("**Reproduce:** `python calibrate_scene.py` · review `reports/calibration_overlay.jpg` and `scene_calibration.json` · `python run_submission.py --videos ../samples --out predictions_samples.json --team 'Qwen 3.8'` · `streamlit run app.py`.")
 
 with calibration_tab:
     st.header("Fixed-camera geometry calibration")
@@ -442,6 +442,12 @@ with demo:
     st.header("Live upload demo")
     st.write(f"Upload an MP4 up to {UPLOAD_LIMIT_GIB} GiB. 4K files are accepted; inference resizes sampled frames to YOLO's 640-pixel input and the review video is capped at 960 px wide. Processing time depends heavily on duration and hardware.")
     st.warning("Streamlit holds the complete upload in server RAM. A 5 GiB file therefore consumes at least 5 GiB of RAM before analysis; budget roughly 16 GiB available RAM and 10 GiB free in the upload workspace. The workspace defaults to .upload_tmp beside the project (set WIUT_TEMP_DIR to use another writable drive). A 32 GiB-RAM machine is safer, especially for 4K/long clips. These are practical estimates, not guarantees; very long videos may take hours. After processing, clear the selected file with the uploader's × control to release its server-side buffer.")
+    try:
+        workspace = _upload_temp_dir()
+        workspace_free_gib = shutil.disk_usage(workspace).free / 1024**3
+        st.caption(f"Upload workspace: `{workspace}` · {workspace_free_gib:.1f} GiB free; preflight reserves about 2× the selected file size.")
+    except OSError as exc:
+        st.error(f"The upload workspace is not writable: {exc}. Set WIUT_TEMP_DIR to a writable disk.")
     upload = st.file_uploader(f"Choose a traffic video (max {UPLOAD_LIMIT_GIB} GiB)", type=["mp4", "MP4"])
     if upload is not None:
         if upload.size > MAX_UPLOAD_BYTES:

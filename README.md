@@ -6,13 +6,13 @@ Offline fixed-camera traffic-event baseline with a local YOLOv8n object detector
 
 ## Quick start — Windows
 
-From this folder (`wiut_cv_scripts`):
+From the project root (the folder containing `app.py`):
 
 ```powershell
 .\setup.ps1
 python calibrate_scene.py --video ..\samples\C3896.MP4
 # review reports/calibration_overlay.jpg and edit scene_calibration.json if needed
-python run_submission.py --videos ..\samples --out predictions_samples.json --team YOUR_TEAM
+python run_submission.py --videos ..\samples --out predictions_samples.json --team "Qwen 3.8"
 python evaluate.py --pred predictions_samples.json --validate-only
 python generate_eda.py
 streamlit run app.py
@@ -36,7 +36,7 @@ python -m pip install -r requirements.txt
 sh weights/download.sh
 python calibrate_scene.py --video ../samples/C3896.MP4
 # visually review reports/calibration_overlay.jpg and edit scene_calibration.json
-python run_submission.py --videos ../samples --out predictions_samples.json --team YOUR_TEAM
+python run_submission.py --videos ../samples --out predictions_samples.json --team "Qwen 3.8"
 python evaluate.py --pred predictions_samples.json --validate-only
 python generate_eda.py
 streamlit run app.py
@@ -49,7 +49,7 @@ The demo listens on `http://localhost:8501`. Streamlit is configured for MP4 fil
 The organizer harness and metric are unchanged:
 
 ```bash
-python run_submission.py --videos /data/test --out predictions.json --team YOUR_TEAM
+python run_submission.py --videos /data/test --out predictions.json --team "Qwen 3.8"
 python evaluate.py --pred predictions.json --gt ground_truth.json
 ```
 
