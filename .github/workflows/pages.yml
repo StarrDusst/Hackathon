@@ -26,8 +26,9 @@ jobs:
       - name: Stage standalone team site
         shell: bash
         run: |
-          mkdir _site
+          mkdir -p _site/assets
           cp team_site/index.html _site/index.html
+          cp team_site/assets/videoframe_40129.png _site/assets/videoframe_40129.png
       - name: Upload standalone team site
         uses: actions/upload-pages-artifact@v3
         with:

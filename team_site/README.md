@@ -1,6 +1,6 @@
 # Qwen 3.8 team site
 
-A self-contained static microsite. The published page is `index.html`; there is no build step or external asset dependency.
+A self-contained static microsite. The published page is `index.html` with the bundled local traffic frame at `assets/videoframe_40129.png`; there is no build step or external asset dependency.
 
 ## Preview locally
 
