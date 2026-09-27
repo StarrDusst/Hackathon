@@ -113,11 +113,16 @@ def run_risk(estimator, path: Path, meta: dict, stride: int, deadline: float) ->
     curve, idx, last = [], 0, 0.0
     estimator.reset({k: meta[k] for k in ("video_id", "fps", "width", "height", "n_frames")})
     while True:
-        ok, frame = cap.read()
+        run_estimator = idx % stride == 0
+        needs_pixels = run_estimator and (estimator.index + 1) % estimator.stride == 0
+        if needs_pixels:
+            ok, frame = cap.read()
+        else:
+            ok, frame = cap.grab(), None
         if not ok:
             break
         t = idx / fps
-        if idx % stride == 0:
+        if run_estimator:
             score = estimator.step(frame, t)
             try:
                 last = min(1.0, max(0.0, float(score)))

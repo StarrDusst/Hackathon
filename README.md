@@ -42,7 +42,7 @@ python generate_eda.py
 streamlit run app.py
 ```
 
-The demo listens on `http://localhost:8501`. Streamlit is configured to accept MP4 files up to 10 GiB with no fixed duration cutoff. Uploads are processed locally and temporary input files are deleted after analysis. This is a configured maximum, not a hardware guarantee: Streamlit buffers the uploaded file, so a 10 GiB upload realistically needs about 32 GB RAM and at least 20 GB free disk for input/output; inference/rendering time grows with duration. Public hosting is not configured.
+The demo listens on `http://localhost:8501`. Streamlit is configured for MP4 files up to 10 GiB, but that limit is not a hardware guarantee: Streamlit buffers the complete upload in server RAM. A 5 GiB file needs at least 5 GiB just for the upload buffer; plan for roughly 16 GiB available RAM and 10 GiB free in the upload workspace. The workspace defaults to `.upload_tmp` beside the project; set `WIUT_TEMP_DIR` to redirect temporary input/output to another writable disk. Near the 10 GiB limit, plan for about 32 GiB RAM and 20 GiB free workspace. The app checks free space before staging and copies in 8 MiB chunks to avoid a second full-size memory copy. YOLO resizes sampled frames to 640 px, unused frames are grabbed without constructing full-resolution arrays, and the review output is capped at 960 px wide/2 FPS. 4K and long clips can still take hours; codec support, available RAM/disk, and GPU/CPU performance determine whether a particular file succeeds. Temporary input is deleted after analysis; completed output is replaced/cleaned on the next analysis. The Streamlit app itself still needs a Python host; GitHub Pages only serves the static team site.
 
 ## Official evaluation commands
 

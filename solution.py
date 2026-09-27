@@ -619,10 +619,13 @@ def detect_events(video_path: str, progress_callback=None) -> list[list]:
     shape = (int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), 3)
     try:
         while True:
-            ok, frame = cap.read()
+            if frame_i % stride == 0:
+                ok, frame = cap.read()
+            else:
+                ok, frame = cap.grab(), None
             if not ok:
                 break
-            if frame_i % stride == 0:
+            if frame is not None:
                 t = frame_i / fps
                 dets = _predict(frame)
                 signal_samples.extend(_signal_observations(frame, dets, config, t))
@@ -651,9 +654,10 @@ class RiskEstimator:
         self.score = 0.01
         self.last_t = 0.0
 
-    def step(self, frame: np.ndarray, t_sec: float) -> float:
+    def step(self, frame: np.ndarray | None, t_sec: float) -> float:
+        """Advance one source frame; only sampled frames need decoded pixels."""
         self.index += 1
-        if self.index % self.stride:
+        if self.index % self.stride or frame is None:
             return float(self.score)
         detections = _predict(frame, conf=0.18)
         self.next_id = _update_tracks(self.tracks, detections, float(t_sec), self.next_id, max_gap=1.5)

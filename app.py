@@ -4,6 +4,7 @@ from __future__ import annotations
 import inspect
 import json
 import os
+import shutil
 import tempfile
 from pathlib import Path
 
@@ -23,6 +24,64 @@ st.set_page_config(page_title="WIUT Traffic Vision", page_icon="🚦", layout="w
 
 MAX_UPLOAD_BYTES = 10 * 1024**3
 UPLOAD_LIMIT_GIB = 10
+UPLOAD_CHUNK_BYTES = 8 * 1024**2
+TEMP_OUTPUT_RESERVE_BYTES = 512 * 1024**2
+TEMP_SPACE_FACTOR = 2
+
+
+def _upload_temp_dir() -> Path:
+    """Use a writable, configurable volume rather than a possibly tiny OS temp drive."""
+    configured = os.environ.get("WIUT_TEMP_DIR")
+    temp_dir = Path(configured).expanduser() if configured else ROOT / ".upload_tmp"
+    temp_dir.mkdir(parents=True, exist_ok=True)
+    return temp_dir
+
+
+def _required_temp_space_bytes(upload_size: int) -> int:
+    """Reserve room for both the source and a conservative output allowance."""
+    return max(TEMP_OUTPUT_RESERVE_BYTES, upload_size * TEMP_SPACE_FACTOR)
+
+
+def _copy_upload_to_temp(upload) -> str:
+    """Copy Streamlit's in-memory upload to disk in bounded chunks.
+
+    Streamlit still buffers the upload in RAM; chunking avoids making another
+    full-size bytes copy while staging it for OpenCV.
+    """
+    temp_dir = _upload_temp_dir()
+    free_bytes = shutil.disk_usage(temp_dir).free
+    required_bytes = _required_temp_space_bytes(int(upload.size))
+    if free_bytes < required_bytes:
+        raise OSError(
+            f"Not enough free space on the temporary disk ({temp_dir}). "
+            f"Need about {required_bytes / 1024**3:.1f} GiB free for input and output; "
+            f"only {free_bytes / 1024**3:.1f} GiB is available."
+        )
+
+    path = None
+    copied = 0
+    try:
+        upload.seek(0)
+        with tempfile.NamedTemporaryFile(suffix=".mp4", dir=temp_dir, delete=False) as tmp:
+            path = tmp.name
+            while True:
+                chunk = upload.read(UPLOAD_CHUNK_BYTES)
+                if not chunk:
+                    break
+                tmp.write(chunk)
+                copied += len(chunk)
+        if copied != int(upload.size):
+            raise OSError(f"Upload copy was incomplete ({copied} of {upload.size} bytes). Please retry.")
+        return path
+    except Exception:
+        if path and os.path.exists(path):
+            os.unlink(path)
+        raise
+    finally:
+        try:
+            upload.seek(0)
+        except Exception:
+            pass
 
 
 def _candidate_vehicle_pair(detections: list[tuple]) -> set[int]:
@@ -50,10 +109,16 @@ def _candidate_vehicle_pair(detections: list[tuple]) -> set[int]:
 def _metadata(path: str) -> dict:
     cap = cv2.VideoCapture(path)
     try:
-        fps = float(cap.get(cv2.CAP_PROP_FPS) or 25.0)
-        return {"fps": fps, "width": int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
-                "height": int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)),
-                "n_frames": int(cap.get(cv2.CAP_PROP_FRAME_COUNT)),
+        if not cap.isOpened():
+            raise ValueError("OpenCV cannot open this MP4. Try an H.264/AAC MP4 or re-encode it.")
+        fps = float(cap.get(cv2.CAP_PROP_FPS))
+        if not np.isfinite(fps) or fps <= 0:
+            fps = 25.0
+        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        return {"fps": fps, "width": width, "height": height,
+                "n_frames": n_frames, "duration_sec": n_frames / fps if n_frames > 0 else 0.0,
                 "video_id": Path(path).name}
     finally:
         cap.release()
@@ -135,7 +200,10 @@ def _risk_curve(path: str, meta: dict, progress=None) -> list[list[float]]:
     fps = max(1.0, meta["fps"])
     try:
         while True:
-            ok, frame = cap.read()
+            if (estimator.index + 1) % estimator.stride == 0:
+                ok, frame = cap.read()
+            else:
+                ok, frame = cap.grab(), None
             if not ok:
                 break
             t = frame_i / fps
@@ -166,10 +234,13 @@ def _annotate(path: str, events: list[list], output: str, progress=None) -> None
     frame_i = 0
     try:
         while True:
-            ok, frame = cap.read()
+            if frame_i % stride == 0:
+                ok, frame = cap.read()
+            else:
+                ok, frame = cap.grab(), None
             if not ok:
                 break
-            if frame_i % stride == 0:
+            if frame is not None:
                 t = frame_i / fps
                 detections = _predict(frame)
                 active = [e for e in events if e[0] <= t <= e[1]]
@@ -369,23 +440,35 @@ with results:
 
 with demo:
     st.header("Live upload demo")
-    st.write("Upload an MP4 up to 10 GB. There is no fixed video-duration cutoff; processing time scales with video length and available hardware. Inference runs locally without an API.")
-    st.warning("Large files require enough server RAM to receive the upload and free disk space for temporary input/output. A 10 GB upload realistically needs about 32 GB RAM and 20 GB free disk; very long videos can take hours.")
-    upload = st.file_uploader("Choose a traffic video (max 10 GB)", type=["mp4", "MP4"])
+    st.write(f"Upload an MP4 up to {UPLOAD_LIMIT_GIB} GiB. 4K files are accepted; inference resizes sampled frames to YOLO's 640-pixel input and the review video is capped at 960 px wide. Processing time depends heavily on duration and hardware.")
+    st.warning("Streamlit holds the complete upload in server RAM. A 5 GiB file therefore consumes at least 5 GiB of RAM before analysis; budget roughly 16 GiB available RAM and 10 GiB free in the upload workspace. The workspace defaults to .upload_tmp beside the project (set WIUT_TEMP_DIR to use another writable drive). A 32 GiB-RAM machine is safer, especially for 4K/long clips. These are practical estimates, not guarantees; very long videos may take hours. After processing, clear the selected file with the uploader's × control to release its server-side buffer.")
+    upload = st.file_uploader(f"Choose a traffic video (max {UPLOAD_LIMIT_GIB} GiB)", type=["mp4", "MP4"])
     if upload is not None:
         if upload.size > MAX_UPLOAD_BYTES:
-            st.error("Maximum upload size is 10 GB.")
+            st.error(f"Maximum upload size is {UPLOAD_LIMIT_GIB} GiB.")
         else:
             size_gib = upload.size / (1024**3)
-            st.caption(f"{upload.name} · {size_gib:.2f} GiB · no duration limit (processing time depends on length)")
+            st.caption(f"{upload.name} · {size_gib:.2f} GiB · no fixed duration limit")
+            if upload.size >= 4 * 1024**3:
+                st.warning("Large upload: it is already buffered in server RAM by Streamlit. Close memory-heavy apps first; copying to disk is chunked, but does not make the network upload itself disk-streamed.")
             if st.button("Analyze video", type="primary"):
                 temp_path = None
+                annotated_path = None
+                previous = st.session_state.pop("demo_result", None)
+                if previous and previous[3] and os.path.isfile(previous[3]):
+                    try:
+                        os.unlink(previous[3])
+                    except OSError:
+                        pass
                 try:
-                    with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
-                        tmp.write(upload.getbuffer()); temp_path = tmp.name
+                    temp_path = _copy_upload_to_temp(upload)
                     meta = _metadata(temp_path)
                     if meta["width"] <= 0 or meta["height"] <= 0 or meta["n_frames"] <= 0:
                         raise ValueError("OpenCV could not read this video. Check that it is a valid MP4.")
+                    duration_minutes = meta["duration_sec"] / 60.0
+                    st.info(f"Source: {meta['width']}×{meta['height']} · {meta['fps']:.2f} FPS · about {duration_minutes:.1f} min. YOLO inference uses 640 px; output is downscaled for review.")
+                    if meta["width"] * meta["height"] >= 8_000_000:
+                        st.warning("4K/high-resolution source detected. Decoding still reads source frames, but unused frames are skipped without creating full-size image arrays. Expect longer processing time; the result is not 4K.")
                     progress = st.progress(0.02, text="YOLO event scan starting")
                     def event_scan_progress(fraction, seconds):
                         progress.progress(.02 + .40 * fraction, text=f"YOLO scan: {seconds:.0f}s")
@@ -396,15 +479,19 @@ with demo:
                     progress.progress(0.42, text="Event scan complete; computing causal risk")
                     risk = _risk_curve(temp_path, meta, progress)
                     progress.progress(0.72, text="Rendering unverified event-review video")
-                    with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as annotated:
+                    with tempfile.NamedTemporaryFile(suffix=".mp4", dir=_upload_temp_dir(), delete=False) as annotated:
                         annotated_path = annotated.name
                     _annotate(temp_path, events, annotated_path, progress)
                     progress.progress(1.0, text="Complete")
                     st.session_state["demo_result"] = (upload.name, events, risk, annotated_path)
+                    annotated_path = None
+                except OSError as exc:
+                    st.error(str(exc))
                 except Exception as exc:
                     st.exception(exc)
                 finally:
                     if temp_path and os.path.exists(temp_path): os.unlink(temp_path)
+                    if annotated_path and os.path.exists(annotated_path): os.unlink(annotated_path)
     if "demo_result" in st.session_state:
         name, events, risk, video_out = st.session_state["demo_result"]
         st.subheader(f"Results: {name}")

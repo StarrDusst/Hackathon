@@ -1,4 +1,5 @@
 .venv/
+.upload_tmp/
 __pycache__/
 *.py[cod]
 *.part
